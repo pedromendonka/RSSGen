@@ -6,7 +6,7 @@
 
 ## How to install
 ```sh
-meteor add pedromendonka:RSSGen
+meteor add pedromendonka:rssgen
 ```
 
 ## How to use RSSGen
