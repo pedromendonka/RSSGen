@@ -1,6 +1,6 @@
 Package.describe({
   name: 'pedromendonka:rssgen',
-  version: '0.0.1',
+  version: '0.0.2',
   summary: 'A simple RSS generator from a mongo collection',
   git: 'https://github.com/pedromendonka/RSSGen',
   documentation: 'README.md'
