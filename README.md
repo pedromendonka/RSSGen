@@ -7,12 +7,6 @@ The goal of RSSGen is to be flexible but extremely straightforward to use and to
 **In this version of RSSGen, the code is wrapped in an IIFE to be more robust.**
 *Options can not be configured directly (except source option) and it's not compatible with earlier versions (sorry for the inconvenience), but this version tries to be more robust and simpler to use*
 
-### Using RSSGen as javaScript library
-*RSSGen can be used as a library on any non Meteor project*
-```html
-    <script src="RSSGen.js"></script>
-
-```
 ## How to install
 ```sh
 meteor add pedromendonka:rssgen
@@ -90,6 +84,13 @@ meteor add pedromendonka:rssgen
 
     // Or in a single line with method chaining
     myRSSGen.setSource(myDataSource).generate();
+
+```
+
+### Using RSSGen as javaScript library
+*RSSGen can be used as a library on any non Meteor project*
+```html
+    <script src="RSSGen.js"></script>
 
 ```
 
