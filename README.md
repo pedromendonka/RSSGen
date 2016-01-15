@@ -79,7 +79,7 @@ meteor add pedromendonka:rssgen
 
 ```
 
-*Alternatively You can set the data source without messing with the other config options*
+**Alternatively You can set the data source without messing with the other config options**
 ```javascript
     // Fetch your data from a mongo collection or from an object array
     var myDataSource = MyMongoCollection.find().fetch();
@@ -94,4 +94,3 @@ meteor add pedromendonka:rssgen
 ```
 
 *Thanks for using | Any bug or error please drop me a line*
-*PM*
