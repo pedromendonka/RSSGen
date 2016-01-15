@@ -24,40 +24,30 @@ meteor add pedromendonka:rssgen
 ```javascript
     var myRSSGenOptions = {
         // Your channel title
-        title: 'RSSGen posts';
+        title: 'RSSGen posts',
         // Main link of your channel
-        link: 'https://atmospherejs.com/pedromendonka/rssgen';
+        link: 'https://atmospherejs.com/pedromendonka/rssgen',
         // Channel description
-        description: 'RSS simple generator';
+        description: 'RSS simple generator',
         /*
         The source for the channel items based on a mongo collection.
         MONGODB COLLECTION SHOULD HAVE A 'title' and 'body' FIELD
         >>>>>>>>>>> for item's title and description <<<<<<<<<<<<
         */
-        source: MyMongoCollection.find().fetch();
+        source: MyMongoCollection.find().fetch(),
         /*
         The path to put your generated RSS file
         Normally [public] folder to be an accessible asset
         Make sure the path you choose exists,
         otherwise the file will be placed in your App root path
         */
-        outputDir: '/public/rss/';
+        outputDir: '/public/rss/',
         /*
         The file name to generate RSS
         Make sure the file has the xml extension,
         Otherwise RSS readers can't read it
         */
-        outputFile: 'my_rss_output.xml';
-    }
-    // OR LIKE THIS
-
-    myRSSGen.conf = {
-        title: 'RSSGen posts',
-        link: 'https://atmospherejs.com/pedromendonka/rssgen',
-        description: 'RSS simple generator',
-        source: MyMongoCollection.find().fetch();
-        outputDir: '/public/rss/',
-        outputFile: 'rssoutput.xml'
+        outputFile: 'my_rss_output.xml'
     }
 
 ```
