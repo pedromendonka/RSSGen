@@ -1,9 +1,18 @@
 # RSSGen is a Meteor package that generates a RSS xml file
 
-**RSSGen generates Rich Site Summary, RSS, to a XML file from a mongo collection.**
-**The goal of RSSGen is to be flexible but extremely straightforward to use and to configure**
+**RSSGen generates Rich Site Summary, RSS, to a XML file from a mongo collection or other object array.**
+The goal of RSSGen is to be flexible but extremely straightforward to use and to configure
 
+## About version 1.0.0
+**In this version of RSSGen, the code is wrapped in an IIFE to be more robust.**
+*Options can not be configured directly (except source option) and it's not compatible with earlier versions (sorry for the inconvenience), but this version tries to be more robust and simpler to use*
 
+### Using RSSGen as javaScript library
+*RSSGen can be used as a library on any non Meteor project*
+```html
+    <script src="RSSGen.js"></script>
+
+```
 ## How to install
 ```sh
 meteor add pedromendonka:rssgen
@@ -11,39 +20,35 @@ meteor add pedromendonka:rssgen
 
 ## How to use RSSGen
 
-**On the server side of your Meteor project just instantiate RSSGen**
+**Pass your RSSGen configuration options through an object**
 ```javascript
-var myRSSGen = new RSSGen();
-
-```
-**Configure your RSSGen instance**
-```javascript
-    // Your channel title
-    myRSSGen.conf.title = 'RSSGen posts';
-    // Main link of your channel
-    myRSSGen.conf.link = 'https://atmospherejs.com/pedromendonka/rssgen';
-    // Channel description
-    myRSSGen.conf.description = 'RSS simple generator';
-    /*
-    The source for the channel items based on a mongo collection.
-    MONGODB COLLECTION SHOULD HAVE A 'title' and 'body' FIELD
-    >>>>>>>>>>> for item's title and description <<<<<<<<<<<<
-    */
-    myRSSGen.conf.source = MyMongoCollection.find().fetch();
-    /*
-    The path to put your generated RSS file
-    Normally [public] folder to be an accessible asset
-    Make sure the path you choose exists,
-    otherwise the file will be placed in your App root path
-    */
-    myRSSGen.conf.outputDir = '/public/rss/';
-    /*
-    The file name to generate RSS
-    Make sure the file has the xml extension,
-    Otherwise RSS readers can't read it
-    */
-    myRSSGen.conf.outputFile ='my_rss_output.xml';
-
+    var myRSSGenOptions = {
+        // Your channel title
+        title: 'RSSGen posts';
+        // Main link of your channel
+        link: 'https://atmospherejs.com/pedromendonka/rssgen';
+        // Channel description
+        description: 'RSS simple generator';
+        /*
+        The source for the channel items based on a mongo collection.
+        MONGODB COLLECTION SHOULD HAVE A 'title' and 'body' FIELD
+        >>>>>>>>>>> for item's title and description <<<<<<<<<<<<
+        */
+        source: MyMongoCollection.find().fetch();
+        /*
+        The path to put your generated RSS file
+        Normally [public] folder to be an accessible asset
+        Make sure the path you choose exists,
+        otherwise the file will be placed in your App root path
+        */
+        outputDir: '/public/rss/';
+        /*
+        The file name to generate RSS
+        Make sure the file has the xml extension,
+        Otherwise RSS readers can't read it
+        */
+        outputFile: 'my_rss_output.xml';
+    }
     // OR LIKE THIS
 
     myRSSGen.conf = {
@@ -56,18 +61,47 @@ var myRSSGen = new RSSGen();
     }
 
 ```
+
+**On the server side of your Meteor project just instantiate RSSGen passing your config options**
+```javascript
+    var myRSSGen = RSSGen(myRSSGenOptions);    // This param can be set later
+
+```
+
+**You can set your options later if don't want to pass it as an argument when creating your RSSGen instance using the setConf() method**
+```javascript
+    myRSSGen.setConf(myRSSGenOptions);
+    // Or in a single line with method chaining
+    myRSSGen.setConf(myRSSGenOptions).generate();
+
+```
+
+**You can check your rssData calling the generateRssData() method**
+```javascript
+    console.log(myRSSGen.generateRssData());
+
+```
+
 **On the server generate your RSS whenever you update your Collection**
 ```javascript
-
-myRSSGen.generate();
+    // This will create a file to your chosen RSS path in .xml format
+    myRSSGen.generate();
 
 ```
 
-**Alternatively You can pass the data source of the feed into the function**
+*Alternatively You can set the data source without messing with the other config options*
 ```javascript
+    // Fetch your data from a mongo collection or from an object array
+    var myDataSource = MyMongoCollection.find().fetch();
+    // Set the new RSSGen data source option
+    myRSSGen.setSource(myDataSource);
+    // Generate new file with the new source setSource
+    myRSSGen.generate();
 
-var myDataSource = MyMongoCollection.find().fetch();
-
-myRSSGen.generate(myDataSource);
+    // Or in a single line with method chaining
+    myRSSGen.setSource(myDataSource).generate();
 
 ```
+
+*Thanks for using | Any bug or error please drop me a line*
+*PM*
