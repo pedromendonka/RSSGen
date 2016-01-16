@@ -11,10 +11,10 @@
 */
 
 
-(function (global) {
-    //var fs = Npm.require('fs');
-    //var path = Npm.require('path');
-    //var rootPath = path.resolve('../../../../../');
+(function () {
+    var fs = Npm.require('fs');
+    var path = Npm.require('path');
+    var rootPath = path.resolve('../../../../../');
     var rssConf = {};
     var rssData;
     // RSS structure using XML 1.0, UTF-8, RSS version 2.0 //
@@ -62,7 +62,7 @@
 
     };
     // Default RSS channel config
-     var defaultConf = {
+    var defaultConf = {
         title: 'RSSGen posts',
         link: 'https://atmospherejs.com/pedromendonka/rssgen',
         description: 'RSS simple generator',
@@ -117,7 +117,7 @@
                 if (error) {
                     throw error;
                 } else {
-                    return 'RSS generated!';
+                    console.log('RSS generated!');
                 }
             });
         },
@@ -146,6 +146,6 @@
     // Exposing prototype
     RSSGen.init.prototype = RSSGen.prototype;
     // Exposing RSSGen
-    global.RSSGen = RSSGen;
+    this.RSSGen = RSSGen;
 
-}(window));
+}());

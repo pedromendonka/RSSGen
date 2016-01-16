@@ -87,11 +87,4 @@ meteor add pedromendonka:rssgen
 
 ```
 
-### Using RSSGen as javaScript library
-*RSSGen can be used as a library on any non Meteor project*
-```html
-    <script src="RSSGen.js"></script>
-
-```
-
 *Thanks for using | Any bug or error please drop me a line*
